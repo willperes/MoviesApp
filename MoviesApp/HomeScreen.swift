@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeScreen.swift
 //  MoviesApp
 //
 //  Created by Willian Peres on 09/05/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class HomeScreen: UIViewController {
     private var collectionView: UICollectionView?
     
     override func viewDidLoad() {
@@ -28,11 +28,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             return
         }
         
-        let numberOfColumns = 3.0
+        let numberOfColumns = 2.0
         let cellSpacing = 8.0
         
         let totalSpacing = cellSpacing * (numberOfColumns - 1)
-        let cellWidth = ((view.frame.size.width - totalSpacing) / 3) - 0.1
+        let cellWidth = ((view.frame.size.width - totalSpacing) / numberOfColumns) - 0.1
         
         layout.itemSize = CGSize(width: cellWidth, height: cellWidth)
         layout.scrollDirection = .vertical
@@ -46,7 +46,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         view.addSubview(collectionView)
     }
-    
+}
+
+// Handle logic for the collectionView
+extension HomeScreen: UICollectionViewDelegate, UICollectionViewDataSource {
     // Number of items in the collection view
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 30
@@ -54,8 +57,22 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     // Manage the cell at index
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as? CustomCollectionViewCell else {
+            fatalError("Failed to dequeue a MovieCell.")
+        }
+        
+        cell.configureCell(color: .random())
+        cell.delegate = self
         
         return cell
+    }
+}
+
+extension HomeScreen: CustomCollectionViewCellDelegate {
+    func onCellTapped(color: UIColor) {
+        let secondScreen = SecondScreen()
+        secondScreen.configureScreen(color: color)
+        
+        navigationController?.pushViewController(secondScreen, animated: true)
     }
 }

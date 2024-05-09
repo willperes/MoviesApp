@@ -7,12 +7,20 @@
 
 import UIKit
 
+protocol CustomCollectionViewCellDelegate {
+    func onCellTapped(color: UIColor) -> Void
+}
+
 class CustomCollectionViewCell: UICollectionViewCell {
     static let identifier = "CustomCollectionViewCell"
+    var color: UIColor?
+    var delegate: CustomCollectionViewCellDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .random()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cellTapped))
+        contentView.addGestureRecognizer(tapGesture)
     }
     
     required init?(coder: NSCoder) {
@@ -21,5 +29,14 @@ class CustomCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+    }
+    
+    func configureCell(color: UIColor) {
+        self.color = color
+        contentView.backgroundColor = self.color
+    }
+    
+    @objc func cellTapped() {
+        delegate?.onCellTapped(color: self.color ?? .black)
     }
 }
