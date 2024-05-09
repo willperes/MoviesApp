@@ -11,10 +11,15 @@
 		3AB0A2172BED2C80005FC19B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0A2162BED2C80005FC19B /* SceneDelegate.swift */; };
 		3AB0A21E2BED2C81005FC19B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0A21D2BED2C81005FC19B /* Assets.xcassets */; };
 		3AB0A2212BED2C81005FC19B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0A21F2BED2C81005FC19B /* LaunchScreen.storyboard */; };
-		3AB0A22B2BED46C5005FC19B /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0A22A2BED46C5005FC19B /* HomeScreen.swift */; };
-		3AB0A22D2BED4835005FC19B /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0A22C2BED4835005FC19B /* CustomCollectionViewCell.swift */; };
 		3AB0A2322BED4ECE005FC19B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0A2312BED4ECE005FC19B /* UIColor.swift */; };
 		3AB0A2342BED53CF005FC19B /* SecondScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0A2332BED53CF005FC19B /* SecondScreen.swift */; };
+		3AB0A2402BED62F1005FC19B /* ListMoviesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0A23A2BED62F1005FC19B /* ListMoviesPresenter.swift */; };
+		3AB0A2412BED62F1005FC19B /* ListMoviesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0A23B2BED62F1005FC19B /* ListMoviesWorker.swift */; };
+		3AB0A2422BED62F1005FC19B /* ListMoviesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0A23C2BED62F1005FC19B /* ListMoviesRouter.swift */; };
+		3AB0A2432BED62F1005FC19B /* ListMoviesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0A23D2BED62F1005FC19B /* ListMoviesModels.swift */; };
+		3AB0A2442BED62F1005FC19B /* ListMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0A23E2BED62F1005FC19B /* ListMoviesViewController.swift */; };
+		3AB0A2452BED62F1005FC19B /* ListMoviesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0A23F2BED62F1005FC19B /* ListMoviesInteractor.swift */; };
+		3AB0A2482BED655A005FC19B /* ListMoviesItemCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0A2472BED655A005FC19B /* ListMoviesItemCVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,10 +29,15 @@
 		3AB0A21D2BED2C81005FC19B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AB0A2202BED2C81005FC19B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AB0A2222BED2C81005FC19B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3AB0A22A2BED46C5005FC19B /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
-		3AB0A22C2BED4835005FC19B /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		3AB0A2312BED4ECE005FC19B /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		3AB0A2332BED53CF005FC19B /* SecondScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondScreen.swift; sourceTree = "<group>"; };
+		3AB0A23A2BED62F1005FC19B /* ListMoviesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMoviesPresenter.swift; sourceTree = "<group>"; };
+		3AB0A23B2BED62F1005FC19B /* ListMoviesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMoviesWorker.swift; sourceTree = "<group>"; };
+		3AB0A23C2BED62F1005FC19B /* ListMoviesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMoviesRouter.swift; sourceTree = "<group>"; };
+		3AB0A23D2BED62F1005FC19B /* ListMoviesModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMoviesModels.swift; sourceTree = "<group>"; };
+		3AB0A23E2BED62F1005FC19B /* ListMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMoviesViewController.swift; sourceTree = "<group>"; };
+		3AB0A23F2BED62F1005FC19B /* ListMoviesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMoviesInteractor.swift; sourceTree = "<group>"; };
+		3AB0A2472BED655A005FC19B /* ListMoviesItemCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMoviesItemCVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,12 +70,11 @@
 		3AB0A2132BED2C80005FC19B /* MoviesApp */ = {
 			isa = PBXGroup;
 			children = (
+				3AB0A2352BED6215005FC19B /* Domain */,
 				3AB0A22E2BED4EA5005FC19B /* Extensions */,
 				3AB0A2142BED2C80005FC19B /* AppDelegate.swift */,
 				3AB0A2162BED2C80005FC19B /* SceneDelegate.swift */,
-				3AB0A22A2BED46C5005FC19B /* HomeScreen.swift */,
 				3AB0A2332BED53CF005FC19B /* SecondScreen.swift */,
-				3AB0A22C2BED4835005FC19B /* CustomCollectionViewCell.swift */,
 				3AB0A21D2BED2C81005FC19B /* Assets.xcassets */,
 				3AB0A21F2BED2C81005FC19B /* LaunchScreen.storyboard */,
 				3AB0A2222BED2C81005FC19B /* Info.plist */,
@@ -79,6 +88,60 @@
 				3AB0A2312BED4ECE005FC19B /* UIColor.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3AB0A2352BED6215005FC19B /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				3AB0A2362BED621F005FC19B /* Movie */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		3AB0A2362BED621F005FC19B /* Movie */ = {
+			isa = PBXGroup;
+			children = (
+				3AB0A2372BED622C005FC19B /* Models */,
+				3AB0A2382BED6230005FC19B /* Scenes */,
+			);
+			path = Movie;
+			sourceTree = "<group>";
+		};
+		3AB0A2372BED622C005FC19B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3AB0A2382BED6230005FC19B /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				3AB0A2392BED6245005FC19B /* ListMovies */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		3AB0A2392BED6245005FC19B /* ListMovies */ = {
+			isa = PBXGroup;
+			children = (
+				3AB0A2462BED64FE005FC19B /* Components */,
+				3AB0A23A2BED62F1005FC19B /* ListMoviesPresenter.swift */,
+				3AB0A23B2BED62F1005FC19B /* ListMoviesWorker.swift */,
+				3AB0A23C2BED62F1005FC19B /* ListMoviesRouter.swift */,
+				3AB0A23D2BED62F1005FC19B /* ListMoviesModels.swift */,
+				3AB0A23E2BED62F1005FC19B /* ListMoviesViewController.swift */,
+				3AB0A23F2BED62F1005FC19B /* ListMoviesInteractor.swift */,
+			);
+			path = ListMovies;
+			sourceTree = "<group>";
+		};
+		3AB0A2462BED64FE005FC19B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				3AB0A2472BED655A005FC19B /* ListMoviesItemCVC.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,11 +215,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AB0A2322BED4ECE005FC19B /* UIColor.swift in Sources */,
-				3AB0A22D2BED4835005FC19B /* CustomCollectionViewCell.swift in Sources */,
+				3AB0A2422BED62F1005FC19B /* ListMoviesRouter.swift in Sources */,
+				3AB0A2402BED62F1005FC19B /* ListMoviesPresenter.swift in Sources */,
+				3AB0A2412BED62F1005FC19B /* ListMoviesWorker.swift in Sources */,
+				3AB0A2432BED62F1005FC19B /* ListMoviesModels.swift in Sources */,
 				3AB0A2152BED2C80005FC19B /* AppDelegate.swift in Sources */,
-				3AB0A22B2BED46C5005FC19B /* HomeScreen.swift in Sources */,
+				3AB0A2482BED655A005FC19B /* ListMoviesItemCVC.swift in Sources */,
+				3AB0A2452BED62F1005FC19B /* ListMoviesInteractor.swift in Sources */,
 				3AB0A2172BED2C80005FC19B /* SceneDelegate.swift in Sources */,
 				3AB0A2342BED53CF005FC19B /* SecondScreen.swift in Sources */,
+				3AB0A2442BED62F1005FC19B /* ListMoviesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

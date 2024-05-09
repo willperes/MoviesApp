@@ -8,12 +8,24 @@
 import UIKit
 
 class SecondScreen: UIViewController {
+    var color: UIColor?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
     }
     
-    func configureScreen(color: UIColor) {
+    func configureScreen(withColor color: UIColor) {
         view.backgroundColor = color
+        self.color = color
+        self.setupUI()
+    }
+    
+    func setupUI() {
+        guard let color = color else {
+            return
+        }
+        
+        title = color.accessibilityName.capitalized
+        navigationItem.largeTitleDisplayMode = .never
     }
 }
