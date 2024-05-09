@@ -13,7 +13,8 @@ class HomeScreen: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Colors"
+        // Configure the navigationController title
+        title = "Movies"
         navigationController?.navigationBar.prefersLargeTitles = true
         
         self.setupCollectionView()
@@ -28,13 +29,14 @@ class HomeScreen: UIViewController {
             return
         }
         
-        let numberOfColumns = 2.0
+        let numberOfColumns = 3.0
         let cellSpacing = 8.0
         
         let totalSpacing = cellSpacing * (numberOfColumns - 1)
         let cellWidth = ((view.frame.size.width - totalSpacing) / numberOfColumns) - 0.1
+        let cellHeight = cellWidth * 1.35
         
-        layout.itemSize = CGSize(width: cellWidth, height: cellWidth)
+        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = cellSpacing
         layout.minimumInteritemSpacing = cellSpacing
