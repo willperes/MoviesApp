@@ -1,5 +1,5 @@
 //
-//  ListMoviesRouter.swift
+//  MoviesListRouter.swift
 //  MoviesApp
 //
 //  Created by Willian Peres on 09/05/24.
@@ -12,18 +12,18 @@
 
 import UIKit
 
-@objc protocol ListMoviesRoutingLogic {
+@objc protocol MoviesListRoutingLogic {
   //func routeToSomewhere(segue: UIStoryboardSegue?)
     func routeToSecondScreen(withColor color: UIColor) -> Void
 }
 
-protocol ListMoviesDataPassing {
-  var dataStore: ListMoviesDataStore? { get }
+protocol MoviesListDataPassing {
+  var dataStore: MoviesListDataStore? { get }
 }
 
-class ListMoviesRouter: NSObject, ListMoviesRoutingLogic, ListMoviesDataPassing {
-  weak var viewController: ListMoviesViewController?
-  var dataStore: ListMoviesDataStore?
+class MoviesListRouter: NSObject, MoviesListRoutingLogic, MoviesListDataPassing {
+  weak var viewController: MoviesListViewController?
+  var dataStore: MoviesListDataStore?
   
   // MARK: Routing
   
@@ -50,14 +50,14 @@ class ListMoviesRouter: NSObject, ListMoviesRoutingLogic, ListMoviesDataPassing 
 
   // MARK: Navigation
   
-  //func navigateToSomewhere(source: ListMoviesViewController, destination: SomewhereViewController)
+  //func navigateToSomewhere(source: MoviesListViewController, destination: SomewhereViewController)
   //{
   //  source.show(destination, sender: nil)
   //}
   
   // MARK: Passing data
   
-  //func passDataToSomewhere(source: ListMoviesDataStore, destination: inout SomewhereDataStore)
+  //func passDataToSomewhere(source: MoviesListDataStore, destination: inout SomewhereDataStore)
   //{
   //  destination.name = source.name
   //}

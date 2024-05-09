@@ -1,5 +1,5 @@
 //
-//  ListMoviesPresenter.swift
+//  MoviesListPresenter.swift
 //  MoviesApp
 //
 //  Created by Willian Peres on 09/05/24.
@@ -12,18 +12,18 @@
 
 import UIKit
 
-protocol ListMoviesPresentationLogic {
-    // func presentSomething(response: ListMovies.Something.Response)
+protocol MoviesListPresentationLogic {
+    // func presentSomething(response: MoviesList.Something.Response)
     func presentSecondScreen(withColor color: UIColor) -> Void
 }
 
-class ListMoviesPresenter: ListMoviesPresentationLogic {
-    weak var viewController: ListMoviesDisplayLogic?
+class MoviesListPresenter: MoviesListPresentationLogic {
+    weak var viewController: MoviesListDisplayLogic?
     
     // MARK: Do something
     
-    //  func presentSomething(response: ListMovies.Something.Response) {
-    //    let viewModel = ListMovies.Something.ViewModel()
+    //  func presentSomething(response: MoviesList.Something.Response) {
+    //    let viewModel = MoviesList.Something.ViewModel()
     //    viewController?.displaySomething(viewModel: viewModel)
     //  }
     

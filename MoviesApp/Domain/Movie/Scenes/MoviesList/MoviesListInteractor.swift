@@ -1,5 +1,5 @@
 //
-//  ListMoviesInteractor.swift
+//  MoviesListInteractor.swift
 //  MoviesApp
 //
 //  Created by Willian Peres on 09/05/24.
@@ -12,27 +12,27 @@
 
 import UIKit
 
-protocol ListMoviesBusinessLogic {
-    // func doSomething(request: ListMovies.Something.Request) -> Void
+protocol MoviesListBusinessLogic {
+    // func doSomething(request: MoviesList.Something.Request) -> Void
     func onCellTapped(withColor color: UIColor) -> Void
 }
 
-protocol ListMoviesDataStore {
+protocol MoviesListDataStore {
     //var name: String { get set }
 }
 
-class ListMoviesInteractor: ListMoviesBusinessLogic, ListMoviesDataStore {
-    var presenter: ListMoviesPresentationLogic?
-    var worker: ListMoviesWorker?
+class MoviesListInteractor: MoviesListBusinessLogic, MoviesListDataStore {
+    var presenter: MoviesListPresentationLogic?
+    var worker: MoviesListWorker?
     //var name: String = ""
     
     // MARK: Do something
     
-//    func doSomething(request: ListMovies.Something.Request) {
-//        worker = ListMoviesWorker()
+//    func doSomething(request: MoviesList.Something.Request) {
+//        worker = MoviesListWorker()
 //        worker?.doSomeWork()
 //        
-//        let response = ListMovies.Something.Response()
+//        let response = MoviesList.Something.Response()
 //        presenter?.presentSomething(response: response)
 //    }
     

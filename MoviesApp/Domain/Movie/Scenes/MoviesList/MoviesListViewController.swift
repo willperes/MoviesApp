@@ -1,5 +1,5 @@
 //
-//  ListMoviesViewController.swift
+//  MoviesListViewController.swift
 //  MoviesApp
 //
 //  Created by Willian Peres on 09/05/24.
@@ -12,14 +12,14 @@
 
 import UIKit
 
-protocol ListMoviesDisplayLogic: AnyObject {
-    // func displaySomething(viewModel: ListMovies.Something.ViewModel) -> Void
+protocol MoviesListDisplayLogic: AnyObject {
+    // func displaySomething(viewModel: MoviesList.Something.ViewModel) -> Void
     func displaySecondScreen(withColor color: UIColor) -> Void
 }
 
-class ListMoviesViewController: UIViewController {
-    var interactor: ListMoviesBusinessLogic?
-    var router: (NSObjectProtocol & ListMoviesRoutingLogic & ListMoviesDataPassing)?
+class MoviesListViewController: UIViewController {
+    var interactor: MoviesListBusinessLogic?
+    var router: (NSObjectProtocol & MoviesListRoutingLogic & MoviesListDataPassing)?
     
     // MARK: Object lifecycle
     
@@ -37,9 +37,9 @@ class ListMoviesViewController: UIViewController {
     
     private func setup() {
         let viewController = self
-        let interactor = ListMoviesInteractor()
-        let presenter = ListMoviesPresenter()
-        let router = ListMoviesRouter()
+        let interactor = MoviesListInteractor()
+        let presenter = MoviesListPresenter()
+        let router = MoviesListRouter()
         viewController.interactor = interactor
         viewController.router = router
         interactor.presenter = presenter
@@ -99,7 +99,7 @@ class ListMoviesViewController: UIViewController {
         layout.minimumLineSpacing = cellSpacing
         layout.minimumInteritemSpacing = cellSpacing
         
-        collectionView.register(ListMoviesItemCVC.self, forCellWithReuseIdentifier: ListMoviesItemCVC.identifier)
+        collectionView.register(MoviesListItemCVC.self, forCellWithReuseIdentifier: MoviesListItemCVC.identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.frame = view.bounds
@@ -108,13 +108,13 @@ class ListMoviesViewController: UIViewController {
     }
     
     //    func doSomething() {
-    //        let request = ListMovies.Something.Request()
+    //        let request = MoviesList.Something.Request()
     //        interactor?.doSomething(request: request)
     //    }
 }
 
-extension ListMoviesViewController: ListMoviesDisplayLogic {
-    //    func displaySomething(viewModel: ListMovies.Something.ViewModel) {
+extension MoviesListViewController: MoviesListDisplayLogic {
+    //    func displaySomething(viewModel: MoviesList.Something.ViewModel) {
     //        //nameTextField.text = viewModel.name
     //    }
     
@@ -124,7 +124,7 @@ extension ListMoviesViewController: ListMoviesDisplayLogic {
 }
 
 // Handle logic for the collectionView
-extension ListMoviesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     // Number of items in the collection view
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 30
@@ -132,7 +132,7 @@ extension ListMoviesViewController: UICollectionViewDelegate, UICollectionViewDa
     
     // Manage the cell at index
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListMoviesItemCVC.identifier, for: indexPath) as? ListMoviesItemCVC else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MoviesListItemCVC.identifier, for: indexPath) as? MoviesListItemCVC else {
             fatalError("Failed to dequeue a MovieCell.")
         }
         
@@ -143,7 +143,7 @@ extension ListMoviesViewController: UICollectionViewDelegate, UICollectionViewDa
     }
 }
 
-extension ListMoviesViewController: ListMoviesItemCVCDelegate {
+extension MoviesListViewController: MoviesListItemCVCDelegate {
     func onCellTapped(color: UIColor) {
         interactor?.onCellTapped(withColor: color)
     }

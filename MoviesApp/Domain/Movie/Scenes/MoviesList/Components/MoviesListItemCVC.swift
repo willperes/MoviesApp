@@ -1,5 +1,5 @@
 //
-//  ListMoviesItemCVC.swift
+//  MoviesListItemCVC.swift
 //  MoviesApp
 //
 //  Created by Willian Peres on 09/05/24.
@@ -7,14 +7,14 @@
 
 import UIKit
 
-protocol ListMoviesItemCVCDelegate {
+protocol MoviesListItemCVCDelegate {
     func onCellTapped(color: UIColor) -> Void
 }
 
-class ListMoviesItemCVC: UICollectionViewCell {
-    static let identifier = "ListMoviesItemCVC"
+class MoviesListItemCVC: UICollectionViewCell {
+    static let identifier = "MoviesListItemCVC"
     var color: UIColor?
-    var delegate: ListMoviesItemCVCDelegate?
+    var delegate: MoviesListItemCVCDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)

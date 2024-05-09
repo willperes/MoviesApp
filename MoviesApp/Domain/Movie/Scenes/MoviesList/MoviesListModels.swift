@@ -1,5 +1,5 @@
 //
-//  ListMoviesModels.swift
+//  MoviesListModels.swift
 //  MoviesApp
 //
 //  Created by Willian Peres on 09/05/24.
@@ -12,7 +12,7 @@
 
 import UIKit
 
-enum ListMovies
+enum MoviesList
 {
   // MARK: Use cases
   

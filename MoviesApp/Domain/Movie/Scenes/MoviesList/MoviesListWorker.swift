@@ -1,5 +1,5 @@
 //
-//  ListMoviesWorker.swift
+//  MoviesListWorker.swift
 //  MoviesApp
 //
 //  Created by Willian Peres on 09/05/24.
@@ -12,7 +12,7 @@
 
 import UIKit
 
-class ListMoviesWorker
+class MoviesListWorker
 {
   func doSomeWork()
   {
