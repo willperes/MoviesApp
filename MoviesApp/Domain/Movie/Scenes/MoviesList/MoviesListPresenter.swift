@@ -13,19 +13,18 @@
 import UIKit
 
 protocol MoviesListPresentationLogic {
-    // func presentSomething(response: MoviesList.Something.Response)
+    func presentFirstData(response: MoviesList.InitialFetch.Response) -> Void
     func presentSecondScreen(withColor color: UIColor) -> Void
 }
 
 class MoviesListPresenter: MoviesListPresentationLogic {
     weak var viewController: MoviesListDisplayLogic?
     
-    // MARK: Do something
-    
-    //  func presentSomething(response: MoviesList.Something.Response) {
-    //    let viewModel = MoviesList.Something.ViewModel()
-    //    viewController?.displaySomething(viewModel: viewModel)
-    //  }
+    func presentFirstData(response: MoviesList.InitialFetch.Response) {
+        let movies = response.data.results.map { MovieModel.from($0) }
+        let viewModel = MoviesList.InitialFetch.ViewModel(movies: movies)
+        viewController?.displayFirstData(viewModel: viewModel)
+    }
     
     func presentSecondScreen(withColor color: UIColor) {
         viewController?.displaySecondScreen(withColor: color)

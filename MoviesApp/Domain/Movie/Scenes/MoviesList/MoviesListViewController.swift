@@ -12,12 +12,18 @@
 
 import UIKit
 
+class MoviesListView: UIView {
+    
+}
+
 protocol MoviesListDisplayLogic: AnyObject {
-    // func displaySomething(viewModel: MoviesList.Something.ViewModel) -> Void
+    func displayFirstData(viewModel: MoviesList.InitialFetch.ViewModel) -> Void
     func displaySecondScreen(withColor color: UIColor) -> Void
 }
 
 class MoviesListViewController: UIViewController {
+    var movies: [MovieModel] = []
+    
     var interactor: MoviesListBusinessLogic?
     var router: (NSObjectProtocol & MoviesListRoutingLogic & MoviesListDataPassing)?
     
@@ -40,23 +46,14 @@ class MoviesListViewController: UIViewController {
         let interactor = MoviesListInteractor()
         let presenter = MoviesListPresenter()
         let router = MoviesListRouter()
+        let worker = MoviesListWorker()
         viewController.interactor = interactor
         viewController.router = router
         interactor.presenter = presenter
+        interactor.worker = worker
         presenter.viewController = viewController
         router.viewController = viewController
         router.dataStore = interactor
-    }
-    
-    // MARK: Routing
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
     }
     
     // MARK: View lifecycle
@@ -68,6 +65,7 @@ class MoviesListViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         self.setupUI()
+        self.doFetchInitialData()
     }
     
     // MARK: Do something
@@ -107,16 +105,21 @@ class MoviesListViewController: UIViewController {
         view.addSubview(collectionView)
     }
     
-    //    func doSomething() {
-    //        let request = MoviesList.Something.Request()
-    //        interactor?.doSomething(request: request)
-    //    }
+    func doFetchInitialData() {
+        Task {
+            await interactor?.doFetchInitialData()
+        }
+    }
 }
 
 extension MoviesListViewController: MoviesListDisplayLogic {
-    //    func displaySomething(viewModel: MoviesList.Something.ViewModel) {
-    //        //nameTextField.text = viewModel.name
-    //    }
+    func displayFirstData(viewModel: MoviesList.InitialFetch.ViewModel) {
+        self.movies = viewModel.movies
+        
+        DispatchQueue.main.async {
+            self.collectionView?.reloadData()
+        }
+    }
     
     func displaySecondScreen(withColor color: UIColor) {
         router?.routeToSecondScreen(withColor: color)
@@ -127,7 +130,7 @@ extension MoviesListViewController: MoviesListDisplayLogic {
 extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     // Number of items in the collection view
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return self.movies.count
     }
     
     // Manage the cell at index

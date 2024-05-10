@@ -12,9 +12,15 @@
 
 import UIKit
 
-class MoviesListWorker
-{
-  func doSomeWork()
-  {
-  }
+protocol MoviesListWorkerProtocol {
+    typealias Completion<D> = (_ result: D?, _ error: Error?) -> Void
+    
+    func fetchInitialData(_ completion: @escaping Completion<MoviesListResponseDTO>) async -> Void
+}
+
+class MoviesListWorker: MoviesListWorkerProtocol {
+    func fetchInitialData(_ completion: @escaping Completion<MoviesListResponseDTO>) async -> Void {
+        let data = Bundle.main.decode(MoviesListResponseDTO.self, from: "movies.json")
+        completion(data, nil)
+    }
 }

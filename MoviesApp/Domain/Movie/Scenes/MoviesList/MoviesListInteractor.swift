@@ -13,28 +13,31 @@
 import UIKit
 
 protocol MoviesListBusinessLogic {
-    // func doSomething(request: MoviesList.Something.Request) -> Void
+    func doFetchInitialData() async -> Void
     func onCellTapped(withColor color: UIColor) -> Void
 }
 
-protocol MoviesListDataStore {
-    //var name: String { get set }
-}
+protocol MoviesListDataStore {}
 
 class MoviesListInteractor: MoviesListBusinessLogic, MoviesListDataStore {
     var presenter: MoviesListPresentationLogic?
     var worker: MoviesListWorker?
-    //var name: String = ""
     
-    // MARK: Do something
-    
-//    func doSomething(request: MoviesList.Something.Request) {
-//        worker = MoviesListWorker()
-//        worker?.doSomeWork()
-//        
-//        let response = MoviesList.Something.Response()
-//        presenter?.presentSomething(response: response)
-//    }
+    @MainActor
+    func doFetchInitialData() async -> Void {
+        await worker?.fetchInitialData { data, error in
+            guard let data = data, error == nil else {
+                // TODO: handle error
+                if let error {
+                    print(error.localizedDescription)
+                }
+                return
+            }
+            
+            let response = MoviesList.InitialFetch.Response(data: data)
+            self.presenter?.presentFirstData(response: response)
+        }
+    }
     
     func onCellTapped(withColor color: UIColor) {
         presenter?.presentSecondScreen(withColor: color)
