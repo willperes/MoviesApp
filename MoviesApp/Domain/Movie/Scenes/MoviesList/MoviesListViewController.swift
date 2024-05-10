@@ -12,17 +12,19 @@
 
 import UIKit
 
-class MoviesListView: UIView {
-    
-}
-
 protocol MoviesListDisplayLogic: AnyObject {
     func displayFirstData(viewModel: MoviesList.InitialFetch.ViewModel) -> Void
+    func displayMoreData(viewModel: MoviesList.FetchMoreData.ViewModel) -> Void
     func displaySecondScreen(withMovie movie: MovieModel) -> Void
+    func displayLoadingMore() -> Void
 }
 
 class MoviesListViewController: UIViewController {
-    var movies: [MovieModel] = []
+    var viewModel: MoviesList.ViewModel = MoviesList.ViewModel(
+        currentPage: 1,
+        hasNextPage: true,
+        isLoadingMore: false,
+        movies: [])
     
     var interactor: MoviesListBusinessLogic?
     var router: (NSObjectProtocol & MoviesListRoutingLogic & MoviesListDataPassing)?
@@ -111,19 +113,47 @@ class MoviesListViewController: UIViewController {
             await interactor?.doFetchInitialData()
         }
     }
+    
+    func doFetchMoreData() {
+        if viewModel.isLoadingMore || !viewModel.hasNextPage {
+            return
+        }
+        
+        Task {
+            let request = MoviesList.FetchMoreData.Request(page: viewModel.currentPage + 1)
+            await interactor?.doFetchMoreData(request: request)
+        }
+    }
 }
 
 extension MoviesListViewController: MoviesListDisplayLogic {
     func displayFirstData(viewModel: MoviesList.InitialFetch.ViewModel) {
-        self.movies = viewModel.movies
+        self.viewModel.movies = viewModel.movies
+        reloadCollectionViewData()
+    }
+    
+    func displayMoreData(viewModel: MoviesList.FetchMoreData.ViewModel) {
+        self.viewModel.currentPage = viewModel.currentPage
+        self.viewModel.hasNextPage = viewModel.hasNextPage
+        self.viewModel.movies.append(contentsOf: viewModel.movies)
+        self.viewModel.isLoadingMore = false
         
-        DispatchQueue.main.async {
-            self.collectionView?.reloadData()
-        }
+        reloadCollectionViewData()
+    }
+    
+    func displayLoadingMore() {
+        viewModel.isLoadingMore = true
+        reloadCollectionViewData()
     }
     
     func displaySecondScreen(withMovie movie: MovieModel) {
         router?.routeToSecondScreen(withMovie: movie)
+    }
+    
+    private func reloadCollectionViewData() {
+        DispatchQueue.main.async {
+            self.collectionView?.reloadData()
+        }
     }
 }
 
@@ -131,7 +161,7 @@ extension MoviesListViewController: MoviesListDisplayLogic {
 extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     // Number of items in the collection view
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.movies.count
+        return viewModel.movies.count
     }
     
     // Manage the cell at index
@@ -140,10 +170,17 @@ extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDa
             fatalError("Failed to dequeue a MovieCell.")
         }
         
-        cell.configureCell(withMovie: self.movies[indexPath.item])
+        cell.configureCell(withMovie: viewModel.movies[indexPath.item])
         cell.delegate = self
         
         return cell
+    }
+    
+    // Execute code when the cell is on the screen
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.item == viewModel.movies.count - 1 {
+            self.doFetchMoreData()
+        }
     }
 }
 

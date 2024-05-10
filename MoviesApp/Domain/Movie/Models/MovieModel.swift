@@ -11,9 +11,10 @@ struct MovieModel {
     let id: Int
     let title: String
     let description: String
-    let imageURL: String
+    let imageURL: String?
     
     static func from(_ movieDTO: MovieResponseDTO) -> MovieModel {
-        return MovieModel(id: movieDTO.id, title: movieDTO.title, description: movieDTO.overview, imageURL: "https://image.tmdb.org/t/p/w185\(movieDTO.poster_path)")
+        let imageURL = movieDTO.poster_path != nil ? "https://image.tmdb.org/t/p/w185\(movieDTO.poster_path!)" : nil
+        return MovieModel(id: movieDTO.id, title: movieDTO.title, description: movieDTO.overview, imageURL: imageURL)
     }
 }

@@ -14,6 +14,7 @@ import UIKit
 
 protocol MoviesListBusinessLogic {
     func doFetchInitialData() async -> Void
+    func doFetchMoreData(request: MoviesList.FetchMoreData.Request) async -> Void
     func onCellTapped(withMovie movie: MovieModel) -> Void
 }
 
@@ -23,7 +24,6 @@ class MoviesListInteractor: MoviesListBusinessLogic, MoviesListDataStore {
     var presenter: MoviesListPresentationLogic?
     var worker: MoviesListWorker?
     
-    @MainActor
     func doFetchInitialData() async -> Void {
         await worker?.fetchInitialData { data, error in
             guard let data = data, error == nil else {
@@ -36,6 +36,23 @@ class MoviesListInteractor: MoviesListBusinessLogic, MoviesListDataStore {
             
             let response = MoviesList.InitialFetch.Response(data: data)
             self.presenter?.presentFirstData(response: response)
+        }
+    }
+    
+    func doFetchMoreData(request: MoviesList.FetchMoreData.Request) async -> Void {
+        presenter?.presentLoadingMore()
+        
+        await worker?.fetchMoreData(request: request) { data, error in
+            guard let data = data, error == nil else {
+                // TODO: handle error
+                if let error {
+                    print("Erro: \(error.localizedDescription)")
+                }
+                return
+            }
+            
+            let response = MoviesList.FetchMoreData.Response(data: data)
+            self.presenter?.presentMoreData(response: response)
         }
     }
     

@@ -13,15 +13,36 @@
 import UIKit
 
 enum MoviesList {
-  enum InitialFetch {
-    struct Request {}
-      
-    struct Response {
-        let data: MoviesListResponseDTO
-    }
-      
     struct ViewModel {
-        let movies: [MovieModel]
+        var currentPage: Int
+        var hasNextPage: Bool
+        var isLoadingMore: Bool
+        var movies: [MovieModel]
     }
-  }
+    
+    enum InitialFetch {
+        struct Response {
+            let data: MoviesListResponseDTO
+        }
+        
+        struct ViewModel {
+            let movies: [MovieModel]
+        }
+    }
+    
+    enum FetchMoreData {
+        struct Request {
+            let page: Int
+        }
+        
+        struct Response {
+            let data: MoviesListResponseDTO
+        }
+        
+        struct ViewModel {
+            let movies: [MovieModel]
+            let currentPage: Int
+            let hasNextPage: Bool
+        }
+    }
 }

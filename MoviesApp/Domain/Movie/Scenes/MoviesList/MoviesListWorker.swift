@@ -16,6 +16,7 @@ protocol MoviesListWorkerProtocol {
     typealias Completion<D> = (_ result: D?, _ error: Error?) -> Void
     
     func fetchInitialData(_ completion: @escaping Completion<MoviesListResponseDTO>) async -> Void
+    func fetchMoreData(request: MoviesList.FetchMoreData.Request, _ completion: @escaping Completion<MoviesListResponseDTO>) async -> Void
 }
 
 class MoviesListWorker: MoviesListWorkerProtocol {
@@ -27,6 +28,22 @@ class MoviesListWorker: MoviesListWorkerProtocol {
             path: config.pathUpcoming,
             method: NetworkEndpoint.Method.GET,
             parameters: [config.apiKeyParam])
+        
+        do {
+            let response: MoviesListResponseDTO = try await NetworkManager.shared.getData(from: endpoint)
+            completion(response, nil)
+        } catch {
+            completion(nil, error)
+        }
+    }
+    
+    func fetchMoreData(request: MoviesList.FetchMoreData.Request, _ completion: @escaping Completion<MoviesListResponseDTO>) async -> Void {
+        let page = URLQueryItem(name: "page", value: "\(request.page)")
+        let endpoint = NetworkEndpoint(
+            baseURL: config.baseURL,
+            path: config.pathUpcoming,
+            method: NetworkEndpoint.Method.GET,
+            parameters: [page, config.apiKeyParam])
         
         do {
             let response: MoviesListResponseDTO = try await NetworkManager.shared.getData(from: endpoint)
