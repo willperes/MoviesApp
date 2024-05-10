@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A0191842BEEA201000E9825 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A0191832BEEA201000E9825 /* config.plist */; };
 		3A4BEBF82BEE8B4E005851D3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4BEBF72BEE8B4E005851D3 /* NetworkManager.swift */; };
 		3A4BEBFA2BEE8B8D005851D3 /* NetworkEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4BEBF92BEE8B8D005851D3 /* NetworkEndpoint.swift */; };
 		3A4BEBFC2BEE8BC0005851D3 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4BEBFB2BEE8BC0005851D3 /* NetworkError.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A0191832BEEA201000E9825 /* config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		3A4BEBF72BEE8B4E005851D3 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		3A4BEBF92BEE8B8D005851D3 /* NetworkEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEndpoint.swift; sourceTree = "<group>"; };
 		3A4BEBFB2BEE8BC0005851D3 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				3AB0A21D2BED2C81005FC19B /* Assets.xcassets */,
 				3AB0A21F2BED2C81005FC19B /* LaunchScreen.storyboard */,
 				3AB0A2222BED2C81005FC19B /* Info.plist */,
+				3A0191832BEEA201000E9825 /* config.plist */,
 			);
 			path = MoviesApp;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			files = (
 				3AB0A2212BED2C81005FC19B /* LaunchScreen.storyboard in Resources */,
 				3AB0A21E2BED2C81005FC19B /* Assets.xcassets in Resources */,
+				3A0191842BEEA201000E9825 /* config.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
