@@ -22,8 +22,11 @@ class MoviesListWorker: MoviesListWorkerProtocol {
     private let config = NetworkConfig.Movies.self
     
     func fetchInitialData(_ completion: @escaping Completion<MoviesListResponseDTO>) async -> Void {
-        let parameters = [URLQueryItem(name: "api_key", value: config.apiKey)]
-        let endpoint = NetworkEndpoint(baseURL: config.baseURL, path: config.pathUpcoming, method: NetworkEndpoint.Method.GET, parameters: parameters)
+        let endpoint = NetworkEndpoint(
+            baseURL: config.baseURL,
+            path: config.pathUpcoming,
+            method: NetworkEndpoint.Method.GET,
+            parameters: [config.apiKeyParam])
         
         do {
             let response: MoviesListResponseDTO = try await NetworkManager.shared.getData(from: endpoint)
