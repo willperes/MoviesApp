@@ -61,7 +61,7 @@ class MoviesListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Movies"
+        title = "UIKit Movies"
         navigationController?.navigationBar.prefersLargeTitles = true
         
         self.setupUI()
@@ -86,7 +86,7 @@ class MoviesListViewController: UIViewController {
         }
         
         let numberOfColumns = 3.0
-        let cellSpacing = 4.0
+        let cellSpacing = 6.0
         
         let totalSpacing = cellSpacing * (numberOfColumns - 1)
         let cellWidth = ((view.frame.size.width - totalSpacing) / numberOfColumns) - 0.1

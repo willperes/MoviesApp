@@ -18,6 +18,7 @@ class SecondScreen: UIViewController {
     private var descriptionTextView: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
+        l.font = .systemFont(ofSize: 14)
         l.numberOfLines = 0
         return l
     }()
@@ -44,8 +45,8 @@ class SecondScreen: UIViewController {
         view.addSubview(contentView)
         
         NSLayoutConstraint.activate([
-            contentView.topAnchor.constraint(equalTo: view.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            contentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            contentView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
         ])
