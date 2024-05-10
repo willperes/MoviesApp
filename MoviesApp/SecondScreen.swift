@@ -8,24 +8,56 @@
 import UIKit
 
 class SecondScreen: UIViewController {
-    var color: UIColor?
+    var movie: MovieModel?
+    
+    private var contentView: UIView = {
+        let cv = UIView()
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        return cv
+    }()
+    private var descriptionTextView: UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.numberOfLines = 0
+        return l
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    func configureScreen(withColor color: UIColor) {
-        view.backgroundColor = color
-        self.color = color
-        self.setupUI()
+    func configureScreen(withMovie movie: MovieModel) {
+        view.backgroundColor = .systemBackground
+        self.movie = movie
+        setupUI()
     }
     
     func setupUI() {
-        guard let color = color else {
+        guard let movie = movie else {
             return
         }
         
-        title = color.accessibilityName.capitalized
+        title = movie.title
         navigationItem.largeTitleDisplayMode = .never
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "")
+        
+        view.addSubview(contentView)
+        
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: view.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
+        ])
+        
+        view.addSubview(descriptionTextView)
+        descriptionTextView.text = movie.description
+        descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            descriptionTextView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
+            descriptionTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            descriptionTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+        ])
     }
 }

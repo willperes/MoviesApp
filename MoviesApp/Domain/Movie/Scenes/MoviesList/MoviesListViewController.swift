@@ -18,7 +18,7 @@ class MoviesListView: UIView {
 
 protocol MoviesListDisplayLogic: AnyObject {
     func displayFirstData(viewModel: MoviesList.InitialFetch.ViewModel) -> Void
-    func displaySecondScreen(withColor color: UIColor) -> Void
+    func displaySecondScreen(withMovie movie: MovieModel) -> Void
 }
 
 class MoviesListViewController: UIViewController {
@@ -90,7 +90,7 @@ class MoviesListViewController: UIViewController {
         
         let totalSpacing = cellSpacing * (numberOfColumns - 1)
         let cellWidth = ((view.frame.size.width - totalSpacing) / numberOfColumns) - 0.1
-        let cellHeight = cellWidth * 1.35
+        let cellHeight = cellWidth * 1.4
         
         layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
         layout.scrollDirection = .vertical
@@ -121,8 +121,8 @@ extension MoviesListViewController: MoviesListDisplayLogic {
         }
     }
     
-    func displaySecondScreen(withColor color: UIColor) {
-        router?.routeToSecondScreen(withColor: color)
+    func displaySecondScreen(withMovie movie: MovieModel) {
+        router?.routeToSecondScreen(withMovie: movie)
     }
 }
 
@@ -139,7 +139,7 @@ extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDa
             fatalError("Failed to dequeue a MovieCell.")
         }
         
-        cell.configureCell(color: .random())
+        cell.configureCell(withMovie: self.movies[indexPath.item])
         cell.delegate = self
         
         return cell
@@ -147,7 +147,7 @@ extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDa
 }
 
 extension MoviesListViewController: MoviesListItemCVCDelegate {
-    func onCellTapped(color: UIColor) {
-        interactor?.onCellTapped(withColor: color)
+    func onCellTapped(movie: MovieModel) {
+        interactor?.onCellTapped(withMovie: movie)
     }
 }

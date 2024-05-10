@@ -14,7 +14,7 @@ import UIKit
 
 protocol MoviesListBusinessLogic {
     func doFetchInitialData() async -> Void
-    func onCellTapped(withColor color: UIColor) -> Void
+    func onCellTapped(withMovie movie: MovieModel) -> Void
 }
 
 protocol MoviesListDataStore {}
@@ -39,7 +39,7 @@ class MoviesListInteractor: MoviesListBusinessLogic, MoviesListDataStore {
         }
     }
     
-    func onCellTapped(withColor color: UIColor) {
-        presenter?.presentSecondScreen(withColor: color)
+    func onCellTapped(withMovie movie: MovieModel) {
+        presenter?.presentSecondScreen(withMovie: movie)
     }
 }

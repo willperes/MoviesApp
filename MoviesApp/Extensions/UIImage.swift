@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIImage {
-    private func loadImage(from rawURL: String, completion: @escaping (_ image: UIImage) -> Void) -> Void {
+    func loadImage(from rawURL: String, completion: @escaping (_ image: UIImage) -> Void) -> Void {
         if let cachedImage = ImageCache.shared.get(forKey: rawURL) {
             return completion(cachedImage)
         }

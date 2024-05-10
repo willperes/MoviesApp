@@ -12,9 +12,9 @@
 
 import UIKit
 
-@objc protocol MoviesListRoutingLogic {
+protocol MoviesListRoutingLogic {
   //func routeToSomewhere(segue: UIStoryboardSegue?)
-    func routeToSecondScreen(withColor color: UIColor) -> Void
+    func routeToSecondScreen(withMovie movie: MovieModel) -> Void
 }
 
 protocol MoviesListDataPassing {
@@ -42,9 +42,9 @@ class MoviesListRouter: NSObject, MoviesListRoutingLogic, MoviesListDataPassing 
   //  }
   //}
     
-    func routeToSecondScreen(withColor color: UIColor) {
+    func routeToSecondScreen(withMovie movie: MovieModel) {
         let secondScreen = SecondScreen()
-        secondScreen.configureScreen(withColor: color)
+        secondScreen.configureScreen(withMovie: movie)
         viewController?.navigationController?.pushViewController(secondScreen, animated: true)
     }
 

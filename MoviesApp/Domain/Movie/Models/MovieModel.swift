@@ -14,6 +14,6 @@ struct MovieModel {
     let imageURL: String
     
     static func from(_ movieDTO: MovieResponseDTO) -> MovieModel {
-        return MovieModel(id: movieDTO.id, title: movieDTO.title, description: movieDTO.overview, imageURL: movieDTO.poster_path)
+        return MovieModel(id: movieDTO.id, title: movieDTO.title, description: movieDTO.overview, imageURL: "https://image.tmdb.org/t/p/w185\(movieDTO.poster_path)")
     }
 }

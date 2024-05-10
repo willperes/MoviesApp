@@ -14,7 +14,7 @@ import UIKit
 
 protocol MoviesListPresentationLogic {
     func presentFirstData(response: MoviesList.InitialFetch.Response) -> Void
-    func presentSecondScreen(withColor color: UIColor) -> Void
+    func presentSecondScreen(withMovie movie: MovieModel) -> Void
 }
 
 class MoviesListPresenter: MoviesListPresentationLogic {
@@ -26,7 +26,7 @@ class MoviesListPresenter: MoviesListPresentationLogic {
         viewController?.displayFirstData(viewModel: viewModel)
     }
     
-    func presentSecondScreen(withColor color: UIColor) {
-        viewController?.displaySecondScreen(withColor: color)
+    func presentSecondScreen(withMovie movie: MovieModel) {
+        viewController?.displaySecondScreen(withMovie: movie)
     }
 }
