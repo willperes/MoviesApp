@@ -55,8 +55,6 @@ class MoviesListItemCVC: UICollectionViewCell {
     }
     
     @objc func cellTapped() {
-        print("Here")
-        
         if let movie = self.movie {
             delegate?.onCellTapped(movie: movie)
         }
