@@ -29,7 +29,7 @@ Movies App is an app that shows current movies and their details *(more features
 
 ## Demo
 
-https://github.com/willperes/MoviesApp/assets/64440935/98298c3e-e3c9-4506-b554-e8bdd4d1a60e
+https://github.com/willperes/MoviesApp/assets/64440935/b6ad14bc-1096-4b8e-876e-108e51e654c2
 
 ## Technologies
 
