@@ -63,6 +63,7 @@ class MoviesListViewController: UIViewController {
         
         title = "UIKit Movies"
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.backButtonTitle = "Back to movies list"
         
         self.setupUI()
         self.doFetchInitialData()

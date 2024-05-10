@@ -10,6 +10,11 @@ import UIKit
 class SecondScreen: UIViewController {
     var movie: MovieModel?
     
+    private var scrollView: UIScrollView = {
+        let sv = UIScrollView()
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        return sv
+    }()
     private var contentView: UIView = {
         let cv = UIView()
         cv.translatesAutoresizingMaskIntoConstraints = false
@@ -40,15 +45,24 @@ class SecondScreen: UIViewController {
         
         title = movie.title
         navigationItem.largeTitleDisplayMode = .never
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "")
         
-        view.addSubview(contentView)
+        view.addSubview(scrollView)
         
         NSLayoutConstraint.activate([
-            contentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            contentView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        
+        scrollView.addSubview(contentView)
+        
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 10),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -20)
         ])
         
         view.addSubview(descriptionTextView)
@@ -58,7 +72,8 @@ class SecondScreen: UIViewController {
         NSLayoutConstraint.activate([
             descriptionTextView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
             descriptionTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            descriptionTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+            descriptionTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            descriptionTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
 }

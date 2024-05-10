@@ -19,8 +19,17 @@ protocol MoviesListWorkerProtocol {
 }
 
 class MoviesListWorker: MoviesListWorkerProtocol {
+    private let config = NetworkConfig.Movies.self
+    
     func fetchInitialData(_ completion: @escaping Completion<MoviesListResponseDTO>) async -> Void {
-        let data = Bundle.main.decode(MoviesListResponseDTO.self, from: "movies.json")
-        completion(data, nil)
+        let parameters = [URLQueryItem(name: "api_key", value: config.apiKey)]
+        let endpoint = NetworkEndpoint(baseURL: config.baseURL, path: config.pathUpcoming, method: NetworkEndpoint.Method.GET, parameters: parameters)
+        
+        do {
+            let response: MoviesListResponseDTO = try await NetworkManager.shared.getData(from: endpoint)
+            completion(response, nil)
+        } catch {
+            completion(nil, error)
+        }
     }
 }
